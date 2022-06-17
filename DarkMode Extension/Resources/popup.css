@@ -1,15 +1,20 @@
 :root {
     color-scheme: light dark;
 }
-
 body {
-    width: 100px;
     padding: 10px;
-
     font-family: system-ui;
     text-align: center;
 }
-
-@media (prefers-color-scheme: dark) {
-    /* Dark Mode styles go here. */
+button {
+    width: 75px;
+    height: 75px;
+    border-radius: 10px;
+    color: black;
+    font-size: 14px;
+}
+#color-container {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 15px;
 }
