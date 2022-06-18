@@ -1,32 +1,64 @@
 //popup.js
 const colors = [{
-//    name: "Pink",
-//    code: '#FA96A7'
-//},{
-//    name: "Orange",
-//    code: '#F28500'
-//},{
-    name: "White",
-    code: '#FFFFFF'
+    name: "Black",
+    code: '#000000'
 },{
     name: "Dark",
     code: '#A2A9B1'
+},{
+    name: "Gray",
+    code: '#808080'
+},{
+    name: "Sepia",
+    code: "#704214"
+}, {
+    name: "White",
+    code: '#eeeeee'
 }]
 
 const changeMode = async (color) => {
-    const [tab] = await browser.tabs.query({currentWindow: true, active: true})
+    // const [tab] = await browser.tabs.query({currentWindow: true, active: true})
     if (color == colors[0].code) {
-        let removingCSS = browser.tabs.removeCSS(tab.id, { file: "dark.css" });
-        removingCss.then(null, onError);
+        insertCSS("black.css");
+    } else if (color == colors[1].code) {
+        insertCSS("dark.css");
+    } else if (color == colors[2].code) {
+        insertCSS("gray.css");
+    } else if (color == colors[3].code) {
+        insertCSS("sepia.css");
     } else {
-        try {
-            let insertingCSS = browser.tabs.insertCSS(tab.id, { file: "dark.css" });
-            insertingCSS.then(null, onError);
-          } catch (err) {
-            console.error(`failed to insert CSS: ${err}`);
-          }
+        if (isCSSFileInserted("black.css")) {
+            removeCSS("black.css");
+        }
+        if (isCSSFileInserted("dark.css")) {
+            removeCSS("dark.css");
+        }
+        if (isCSSFileInserted("gray.css")) {
+            removeCSS("gray.css");
+        }
+        if (isCSSFileInserted("sepia.css")) {
+            removeCSS("sepia.css");
+        }
     }
-    
+    window.close()
+}
+
+function insertCSS(file) {
+    return new Promise((resolve, reject) => {
+        browser.tabs.insertCSS({ file }).then(resolve, reject);
+    });
+}
+
+function removeCSS(file) {
+    return new Promise((resolve, reject) => {
+        browser.tabs.removeCSS({ file }).then(resolve, reject);
+    });
+}
+
+function isCSSFileInserted(file) {
+    return new Promise((resolve, reject) => {
+        browser.tabs.getCSS({ file }).then(resolve, reject);
+    });
 }
 
 colors.forEach(color => {
