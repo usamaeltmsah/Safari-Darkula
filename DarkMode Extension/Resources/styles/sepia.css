@@ -1,0 +1,26 @@
+/*body {*/
+/*    filter: sepia(1);*/
+/*}*/
+
+/** {*/
+/*    background-color: rgb(246, 240, 229);*/
+/*    backdrop-filter: sepia(1);*/
+/*    /*filter: invert(1.0) hue-rotate(-165deg);*/
+/*}*/
+
+body, div, nav, aside, header  {
+/*    background-color: rgb(246, 240, 229);*/
+    background-color: rgba(246, 240, 229,1) !important;
+/*    -webkit-backdrop-filter: sepia(1) !important;*/
+/*      backdrop-filter: sepia(1) !important;*/
+/*    filter: sepia(1) !important;*/
+}
+
+h1, h2, h3, h4, h5, h6, b, p, strong, i, em, mark, small, del, ins, sub, sup {
+    color: rgba(0, 0, 0,1) !important;
+}
+
+/*img,*/
+/*video {*/
+/*    filter: sepia(1) hue-rotate(165deg) !important;*/
+/*}*/
