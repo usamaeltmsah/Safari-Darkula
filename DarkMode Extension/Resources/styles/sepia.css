@@ -8,16 +8,33 @@
 /*    /*filter: invert(1.0) hue-rotate(-165deg);*/
 /*}*/
 
-body, div, nav, aside, header  {
+body {
 /*    background-color: rgb(246, 240, 229);*/
+    z-index: -1 !important;
     background-color: rgba(246, 240, 229,1) !important;
 /*    -webkit-backdrop-filter: sepia(1) !important;*/
 /*      backdrop-filter: sepia(1) !important;*/
 /*    filter: sepia(1) !important;*/
 }
 
+article, section, form, aside {
+    z-index: 0 !important;
+    background-color: rgba(246, 240, 229,1) !important;
+}
+
+footer, header, nav, div {
+    z-index: 0 !important;
+    background-color: rgba(246, 240, 229,1) !important;
+}
+
 h1, h2, h3, h4, h5, h6, b, p, strong, i, em, mark, small, del, ins, sub, sup {
+    z-index: 1 !important;
     color: rgba(0, 0, 0,1) !important;
+}
+
+img, video {
+    z-index: 1 !important;
+/*    background-color: rgba(0, 0, 0,0) !important;*/
 }
 
 /*img,*/
