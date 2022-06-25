@@ -1,47 +1,130 @@
 //popup.js
 const colors = [{
-    name: "Black",
-    code: '#000000'
-},{
     name: "Dark",
-    code: '#A2A9B1'
+    code: '#A2A9B1',
+    file: "dark.css"
 },{
     name: "Gray",
-    code: '#808080'
+    code: '#808080',
+    file: "gray.css"
 },{
     name: "Sepia",
-    code: "#704214"
-}, {
-    name: "White",
-    code: '#eeeeee'
+    code: "#704214",
+    file: "sepia.css"
 }]
 
+
+// Do action when navigate to new link
+// browser.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
+//     document.write(1);
+//     if (changeInfo.status === 'complete') {
+//         // Get current tab
+//         insertCSS("dark.css");
+//     }
+// });
+
 const changeMode = async (color) => {
+    // insertCSS("dark.css");
+    // localStorage.setItem(self.origin, 'dark.css');
+    // let file = await localStorage.getItem(self.origin);
+    // if (file) {
+    //     insertCSS(file);
+    // }
     // const [tab] = await browser.tabs.query({currentWindow: true, active: true})
-    if (color == colors[0].code) {
-        insertCSS("black.css");
-    } else if (color == colors[1].code) {
-        insertCSS("dark.css");
-    } else if (color == colors[2].code) {
-        insertCSS("gray.css");
-    } else if (color == colors[3].code) {
-        insertCSS("sepia.css");
-    } else {
-        if (isCSSFileInserted("black.css")) {
-            removeCSS("black.css");
-        }
-        if (isCSSFileInserted("dark.css")) {
-            removeCSS("dark.css");
-        }
-        if (isCSSFileInserted("gray.css")) {
-            removeCSS("gray.css");
-        }
-        if (isCSSFileInserted("sepia.css")) {
-            removeCSS("sepia.css");
-        }
-    }
-    window.close()
+    // saveToCache('color', color.code).then(() => {
+    //     browser.tabs.query({ currentWindow: true, active: true }).then(async (tabs) => {
+    //         const tab = tabs[0];
+    //         const domain = tab.url.split('/')[2];
+    //         const file = `${domain}/popup.css`;
+    //         const isInserted = await isCSSFileInserted(file);
+    //         if (isInserted) {
+    //             removeCSS(file).then(() => {
+    //                 insertCSS(file).then(() => {
+    //                     browser.tabs.reload(tab.id);
+    //                 });
+    //             });
+    //         } else {
+    //             insertCSS(file).then(() => {
+    //                 browser.tabs.reload(tab.id);
+    //             });
+    //         }
+    //     });
+    // });
+
+    // Save dark.css as selectedFile to cache
+//    saveFile('dark.css');
+
+
+    // Remove all added (by the extension) css files then insert the new one
+    let removeAddedCSSFiles = new Promise(resolve => {
+        removeAllCSSFiles();
+    });
+
+    removeAddedCSSFiles.then(insertCSS(color.file));
+    
+   window.close()
 }
+
+// function toggle() {
+//     let q = document.querySelectorAll('#nightify')
+//     if (q.length) {
+//         q[0].parentNode.removeChild(q[0])
+//         return false
+//     }
+//     var h = document.getElementsByTagName('head')[0],
+//         s = document.createElement('style');
+//     s.setAttribute('type', 'text/css');
+//     s.setAttribute('id', 'nightify');
+//     s.appendChild(document.createTextNode('html{-webkit-filter:invert(100%) hue-rotate(180deg) contrast(70%) !important; background: #fff;} .line-content {background-color: #fefefe;}'));
+//     h.appendChild(s);
+//     return true
+// }
+
+// var result = toggle()
+
+function getCurrentTapDomain(tab) {
+    return new Promise((resolve, reject) => {
+        browser.tabs.get(tab.id).then(resolve, reject);
+    });
+}
+
+// function insertCSSToDomain(domain, file) {
+//     return new Promise((resolve, reject) => {
+//         browser.tabs.insertCSS({ file, code: "", allFrames: true, matchAboutBlank: true, matchDomain: domain }).then(resolve, reject);
+//     });
+// }
+
+// Create function to save selectedFile to cache
+function saveFile(selectedFile) {
+    return new Promise((resolve, reject) => {
+        browser.storage.local.set({ selectedFile }).then(resolve, reject);
+    });
+}
+
+// Create function to read selectedFile from cache
+function readFile() {
+    return new Promise((resolve, reject) => {
+        browser.storage.local.get("selectedFile").then(resolve, reject);
+    });
+}
+
+// function saveToCache(key, value) {
+//     return new Promise((resolve, reject) => {
+//         browser.storage.local.set({ [key]: value }).then(resolve, reject);
+//     });
+// }
+
+// function readCache(key) {
+//     return new Promise((resolve, reject) => {
+//         browser.storage.local.get(key).then(resolve, reject);
+//     });
+// }
+
+// function removeFromCache(key) {
+//     return new Promise((resolve, reject) => {
+//         browser.storage.local.remove(key).then(resolve, reject);
+//     });
+// }
 
 function insertCSS(file) {
     return new Promise((resolve, reject) => {
@@ -52,6 +135,12 @@ function insertCSS(file) {
 function removeCSS(file) {
     return new Promise((resolve, reject) => {
         browser.tabs.removeCSS({ file }).then(resolve, reject);
+    });
+}
+
+function removeAllCSSFiles() {
+    colors.forEach(color => {
+        removeCSS(color.file);
     });
 }
 
@@ -67,7 +156,7 @@ colors.forEach(color => {
     button.innerText = color.name
     document.querySelector('#color-container').appendChild(button)
     button.addEventListener('click', e => {
-        changeMode(color.code)
+        changeMode(color)
     })
 })
 
