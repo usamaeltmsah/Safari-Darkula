@@ -1,11 +1,14 @@
-/*@media (prefers-color-scheme: dark) {*/
-body {
-    background-color: rgb(38, 38, 38);
-    filter: invert(0.85) hue-rotate(165deg);
+html {
+/*    background-color: rgb(0, 0, 0) !important;*/
+/*    backdrop-filter: sepia(0) !important;*/
+    filter: invert(1.0) hue-rotate(165deg) !important;
 }
 
 img,
-video {
+video, .background-image {
     filter: invert(1.0) hue-rotate(-165deg) !important;
 }
-/*}*/
+
+.line-content {
+    background-color: #fefefe !important;
+}
