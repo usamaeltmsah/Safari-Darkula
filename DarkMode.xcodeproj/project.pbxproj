@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		190A9133285D31D50073F5A8 /* dark.css in Resources */ = {isa = PBXBuildFile; fileRef = 190A9132285D247B0073F5A8 /* dark.css */; };
-		194F8674285DEB8F005A8CFE /* black.css in Resources */ = {isa = PBXBuildFile; fileRef = 194F8673285DEB8F005A8CFE /* black.css */; };
 		194F8676285E0C78005A8CFE /* gray.css in Resources */ = {isa = PBXBuildFile; fileRef = 194F8675285E0C78005A8CFE /* gray.css */; };
 		194F8678285E29A5005A8CFE /* sepia.css in Resources */ = {isa = PBXBuildFile; fileRef = 194F8677285E29A5005A8CFE /* sepia.css */; };
+		195143232860CFA300D3712A /* docs.css in Resources */ = {isa = PBXBuildFile; fileRef = 195143222860CFA300D3712A /* docs.css */; };
 		19762312285B4BF5008705AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19762311285B4BF5008705AE /* AppDelegate.swift */; };
 		19762316285B4BF5008705AE /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = 19762314285B4BF5008705AE /* Main.html */; };
 		19762318285B4BF5008705AE /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 19762317285B4BF5008705AE /* Icon.png */; };
@@ -62,9 +62,9 @@
 
 /* Begin PBXFileReference section */
 		190A9132285D247B0073F5A8 /* dark.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = dark.css; sourceTree = "<group>"; };
-		194F8673285DEB8F005A8CFE /* black.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = black.css; sourceTree = "<group>"; };
 		194F8675285E0C78005A8CFE /* gray.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = gray.css; sourceTree = "<group>"; };
 		194F8677285E29A5005A8CFE /* sepia.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = sepia.css; sourceTree = "<group>"; };
+		195143222860CFA300D3712A /* docs.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = docs.css; sourceTree = "<group>"; };
 		1976230E285B4BF5008705AE /* DarkMode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DarkMode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19762311285B4BF5008705AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19762315285B4BF5008705AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = ../Base.lproj/Main.html; sourceTree = "<group>"; };
@@ -116,9 +116,9 @@
 			children = (
 				190A9132285D247B0073F5A8 /* dark.css */,
 				194F8677285E29A5005A8CFE /* sepia.css */,
-				194F8673285DEB8F005A8CFE /* black.css */,
 				1976234F285B8914008705AE /* github-dark.css */,
 				19762351285B8914008705AE /* google-dark.css */,
+				195143222860CFA300D3712A /* docs.css */,
 				19762350285B8914008705AE /* stackoverflow-dark.css */,
 				19762353285B8914008705AE /* youtube-dark.css */,
 				194F8675285E0C78005A8CFE /* gray.css */,
@@ -299,9 +299,9 @@
 				19762355285B8914008705AE /* stackoverflow-dark.css in Resources */,
 				19762336285B4BFC008705AE /* images in Resources */,
 				19762358285B8914008705AE /* youtube-dark.css in Resources */,
-				194F8674285DEB8F005A8CFE /* black.css in Resources */,
 				19762338285B4BFC008705AE /* manifest.json in Resources */,
 				194F8676285E0C78005A8CFE /* gray.css in Resources */,
+				195143232860CFA300D3712A /* docs.css in Resources */,
 				19762334285B4BFC008705AE /* _locales in Resources */,
 				1976233C285B4BFC008705AE /* content.js in Resources */,
 				19762342285B4BFC008705AE /* popup.js in Resources */,
