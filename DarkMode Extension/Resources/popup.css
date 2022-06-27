@@ -3,18 +3,41 @@
 }
 body {
     padding: 10px;
-    font-family: system-ui;
+    font-family: 'Ek Mukta';
     text-align: center;
 }
+
+.title {
+    font-size: 25px;
+    font-weight: bold;
+}
 button {
-    width: 75px;
-    height: 75px;
-    border-radius: 10px;
-    color: black;
-    font-size: 14px;
+    width: 65px;
+    height: 65px;
+    border-radius: 20px;
+    color: #fdf1e6;
+    font-size: 30px;
+    padding: 0;
+    text-align: center;
+    box-shadow: 4px 4px 4px #999;
 }
 #color-container {
     display: flex;
     justify-content: space-evenly;
     margin-top: 15px;
+    margin-bottom: 15px;
+    align-content: center;
+}
+
+.text {
+    font-family: 'Ek Mukta';
+    font-weight: 200;
+}
+
+#head-text {
+    font-size: 22px;
+}
+
+#desc-text {
+    font-size: 20px;
 }

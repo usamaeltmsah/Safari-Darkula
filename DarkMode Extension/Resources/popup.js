@@ -1,16 +1,19 @@
 //popup.js
 const colors = [{
     name: "Dark",
-    code: '#A2A9B1',
-    file: "dark.css"
+    code: '#bdbdbd',
+    file: "dark.css",
+    bg_color: '#000000'
 },{
     name: "Gray",
-    code: '#808080',
-    file: "gray.css"
+    code: '#FFFFFF',
+    file: "gray.css",
+    bg_color: '#e0e0e0'
 },{
     name: "Sepia",
     code: "#704214",
-    file: "sepia.css"
+    file: "sepia.css",
+    bg_color: '#fdf1e6'
 }]
 
 
@@ -152,8 +155,9 @@ function isCSSFileInserted(file) {
 
 colors.forEach(color => {
     const button = document.createElement('button')
-    button.style.background = color.code
-    button.innerText = color.name
+    button.style.background = color.bg_color
+    button.style.color = color.code
+    button.innerText = "D"
     document.querySelector('#color-container').appendChild(button)
     button.addEventListener('click', e => {
         changeMode(color)
