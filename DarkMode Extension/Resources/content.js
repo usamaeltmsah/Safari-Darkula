@@ -1,10 +1,46 @@
-browser.runtime.sendMessage({ greeting: "hello" }).then((response) => {
-    console.log("Received response: ", response);
-});
+//browser.runtime.sendMessage({ greeting: "hello" }).then((response) => {
+//    console.log("Received response: ", response);
+//});
+
+//browser.runtime.sendMessage("Some Data"); // This works well
+
+// Error happening when calling sendNativeMessage
+//browser.runtime.sendNativeMessage("application.id", {message: "Hello from background page"}, function(response) {
+//    console.log("Received sendNativeMessage response:");
+//    console.log(response);
+//});
+
+// As well the error happening when calling connectNative
+//let port = browser.runtime.connectNative("application.id");
+//port.postMessage("Hello from JavaScript Port");
+//port.onMessage.addListener(function(message) {
+//    console.log("Received native port message:");
+//    console.log(message);
+//});
+
+//port.onDisconnect.addListener(function(disconnectedPort) {
+//    console.log("Received native port disconnect:");
+//    console.log(disconnectedPort);
+//});
+//browser.runtime.sendMessage("request from content.js");
+
+function sendMessage(e) {
+  const sending = browser.runtime.sendMessage({content: "get_theme"});
+}
+sendMessage;
+
+//window.addEventListener("click", sendMessage);
 
 browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    console.log("Received request: ", request);
+//    console.log("Received request (content): ", request);
+    browser.runtime.sendMessage("Received request (content): ", request);
+
+    // Send message to popup.js
+    sendMessage;
+//    browser.runtime.sendMessage(request);
 });
+
+
 
 // var allElements = document.querySelectorAll("*");
 

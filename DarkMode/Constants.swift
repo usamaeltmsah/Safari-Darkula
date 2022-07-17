@@ -8,6 +8,8 @@
 import Foundation
 
 struct K {
+    static let suitName = "group.com.usamaeltmsah.DarkMode"
+        
     static let themeKey = "theme"
     static let isOnIndexKey = "isOnSegment"
     
@@ -21,3 +23,5 @@ struct K {
         static let sepiaTheme = "Sepia"
     }
 }
+
+let sharedUserDefaults = UserDefaults(suiteName: K.suitName)

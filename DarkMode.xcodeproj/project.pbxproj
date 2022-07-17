@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		190A9133285D31D50073F5A8 /* dark.css in Resources */ = {isa = PBXBuildFile; fileRef = 190A9132285D247B0073F5A8 /* dark.css */; };
+		193B75BD286DF0750067AC37 /* SharingDarkModeFramework.docc in Sources */ = {isa = PBXBuildFile; fileRef = 193B75BC286DF0750067AC37 /* SharingDarkModeFramework.docc */; };
+		193B75CB286DF0750067AC37 /* SharingDarkModeFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 193B75BB286DF0750067AC37 /* SharingDarkModeFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		193B75CE286DF0750067AC37 /* SharingDarkModeFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 193B75B9286DF0750067AC37 /* SharingDarkModeFramework.framework */; };
+		193B75CF286DF0750067AC37 /* SharingDarkModeFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 193B75B9286DF0750067AC37 /* SharingDarkModeFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		193B75D8286DF08B0067AC37 /* DarkModeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193B75D7286DF08B0067AC37 /* DarkModeModel.swift */; };
+		193B75DA286DF40D0067AC37 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193E77052869C69F00263B51 /* Constants.swift */; };
 		193E76EF2868956800263B51 /* Script.js in Resources */ = {isa = PBXBuildFile; fileRef = 193E76EE2868956700263B51 /* Script.js */; };
 		193E76F02868979200263B51 /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = 19762314285B4BF5008705AE /* Main.html */; };
 		193E77062869C69F00263B51 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193E77052869C69F00263B51 /* Constants.swift */; };
@@ -39,6 +45,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		193B75CC286DF0750067AC37 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 19762306285B4BF5008705AE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 193B75B8286DF0750067AC37;
+			remoteInfo = SharingDarkModeFramework;
+		};
 		1976232D285B4BFC008705AE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 19762306285B4BF5008705AE /* Project object */;
@@ -49,6 +62,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		193B75D3286DF0750067AC37 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				193B75CF286DF0750067AC37 /* SharingDarkModeFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1976234A285B4BFC008705AE /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -64,10 +88,12 @@
 
 /* Begin PBXFileReference section */
 		190A9132285D247B0073F5A8 /* dark.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = dark.css; sourceTree = "<group>"; };
+		193B75B1286DEA2D0067AC37 /* DarkMode Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "DarkMode Extension.entitlements"; sourceTree = "<group>"; };
+		193B75B9286DF0750067AC37 /* SharingDarkModeFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SharingDarkModeFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		193B75BB286DF0750067AC37 /* SharingDarkModeFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SharingDarkModeFramework.h; sourceTree = "<group>"; };
+		193B75BC286DF0750067AC37 /* SharingDarkModeFramework.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = SharingDarkModeFramework.docc; sourceTree = "<group>"; };
+		193B75D7286DF08B0067AC37 /* DarkModeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkModeModel.swift; sourceTree = "<group>"; };
 		193E76EE2868956700263B51 /* Script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Script.js; sourceTree = "<group>"; };
-		193E76F92869AE5F00263B51 /* blockerList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = blockerList.json; sourceTree = "<group>"; };
-		193E76FB2869AE5F00263B51 /* ContentBlockerRequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentBlockerRequestHandler.swift; sourceTree = "<group>"; };
-		193E76FD2869AE5F00263B51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		193E77042869AED000263B51 /* DarkMode.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DarkMode.entitlements; sourceTree = "<group>"; };
 		193E77052869C69F00263B51 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		194F8675285E0C78005A8CFE /* gray.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = gray.css; sourceTree = "<group>"; };
@@ -102,10 +128,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		193B75B6286DF0750067AC37 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1976230B285B4BF5008705AE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				193B75CE286DF0750067AC37 /* SharingDarkModeFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,14 +168,14 @@
 			path = styles;
 			sourceTree = "<group>";
 		};
-		193E76F82869AE5F00263B51 /* 123 */ = {
+		193B75BA286DF0750067AC37 /* SharingDarkModeFramework */ = {
 			isa = PBXGroup;
 			children = (
-				193E76F92869AE5F00263B51 /* blockerList.json */,
-				193E76FB2869AE5F00263B51 /* ContentBlockerRequestHandler.swift */,
-				193E76FD2869AE5F00263B51 /* Info.plist */,
+				193B75BB286DF0750067AC37 /* SharingDarkModeFramework.h */,
+				193B75D7286DF08B0067AC37 /* DarkModeModel.swift */,
+				193B75BC286DF0750067AC37 /* SharingDarkModeFramework.docc */,
 			);
-			path = 123;
+			path = SharingDarkModeFramework;
 			sourceTree = "<group>";
 		};
 		19762305285B4BF5008705AE = {
@@ -149,7 +183,7 @@
 			children = (
 				19762310285B4BF5008705AE /* DarkMode */,
 				1976232F285B4BFC008705AE /* DarkMode Extension */,
-				193E76F82869AE5F00263B51 /* 123 */,
+				193B75BA286DF0750067AC37 /* SharingDarkModeFramework */,
 				1976230F285B4BF5008705AE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -159,6 +193,7 @@
 			children = (
 				1976230E285B4BF5008705AE /* DarkMode.app */,
 				1976232B285B4BFC008705AE /* DarkMode Extension.appex */,
+				193B75B9286DF0750067AC37 /* SharingDarkModeFramework.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -194,6 +229,7 @@
 		1976232F285B4BFC008705AE /* DarkMode Extension */ = {
 			isa = PBXGroup;
 			children = (
+				193B75B1286DEA2D0067AC37 /* DarkMode Extension.entitlements */,
 				19762330285B4BFC008705AE /* SafariWebExtensionHandler.swift */,
 				19762343285B4BFC008705AE /* Info.plist */,
 				19762332285B4BFC008705AE /* Resources */,
@@ -219,7 +255,36 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		193B75B4286DF0750067AC37 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				193B75CB286DF0750067AC37 /* SharingDarkModeFramework.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		193B75B8286DF0750067AC37 /* SharingDarkModeFramework */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 193B75D0286DF0750067AC37 /* Build configuration list for PBXNativeTarget "SharingDarkModeFramework" */;
+			buildPhases = (
+				193B75B4286DF0750067AC37 /* Headers */,
+				193B75B5286DF0750067AC37 /* Sources */,
+				193B75B6286DF0750067AC37 /* Frameworks */,
+				193B75B7286DF0750067AC37 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SharingDarkModeFramework;
+			productName = SharingDarkModeFramework;
+			productReference = 193B75B9286DF0750067AC37 /* SharingDarkModeFramework.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		1976230D285B4BF5008705AE /* DarkMode */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1976234B285B4BFC008705AE /* Build configuration list for PBXNativeTarget "DarkMode" */;
@@ -228,11 +293,13 @@
 				1976230B285B4BF5008705AE /* Frameworks */,
 				1976230C285B4BF5008705AE /* Resources */,
 				1976234A285B4BFC008705AE /* Embed App Extensions */,
+				193B75D3286DF0750067AC37 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				1976232E285B4BFC008705AE /* PBXTargetDependency */,
+				193B75CD286DF0750067AC37 /* PBXTargetDependency */,
 			);
 			name = DarkMode;
 			productName = DarkMode;
@@ -263,9 +330,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1320;
+				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
+					193B75B8286DF0750067AC37 = {
+						CreatedOnToolsVersion = 14.0;
+					};
 					1976230D285B4BF5008705AE = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
@@ -283,17 +353,27 @@
 				Base,
 			);
 			mainGroup = 19762305285B4BF5008705AE;
+			packageReferences = (
+			);
 			productRefGroup = 1976230F285B4BF5008705AE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				1976230D285B4BF5008705AE /* DarkMode */,
 				1976232A285B4BFC008705AE /* DarkMode Extension */,
+				193B75B8286DF0750067AC37 /* SharingDarkModeFramework */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		193B75B7286DF0750067AC37 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1976230C285B4BF5008705AE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -334,6 +414,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		193B75B5286DF0750067AC37 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				193B75D8286DF08B0067AC37 /* DarkModeModel.swift in Sources */,
+				193B75BD286DF0750067AC37 /* SharingDarkModeFramework.docc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1976230A285B4BF5008705AE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -350,12 +439,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				19762331285B4BFC008705AE /* SafariWebExtensionHandler.swift in Sources */,
+				193B75DA286DF40D0067AC37 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		193B75CD286DF0750067AC37 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 193B75B8286DF0750067AC37 /* SharingDarkModeFramework */;
+			targetProxy = 193B75CC286DF0750067AC37 /* PBXContainerItemProxy */;
+		};
 		1976232E285B4BFC008705AE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1976232A285B4BFC008705AE /* DarkMode Extension */;
@@ -391,6 +486,72 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		193B75D1286DF0750067AC37 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 2DQV4CFN7G;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = group.com.usamaeltmsah.DarkMode.SharingDarkModeFramework;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		193B75D2286DF0750067AC37 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 2DQV4CFN7G;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = group.com.usamaeltmsah.DarkMode.SharingDarkModeFramework;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		19762345285B4BFC008705AE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -510,6 +671,7 @@
 		19762348285B4BFC008705AE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "DarkMode Extension/DarkMode Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2DQV4CFN7G;
@@ -540,6 +702,7 @@
 		19762349285B4BFC008705AE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "DarkMode Extension/DarkMode Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2DQV4CFN7G;
@@ -646,6 +809,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		193B75D0286DF0750067AC37 /* Build configuration list for PBXNativeTarget "SharingDarkModeFramework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				193B75D1286DF0750067AC37 /* Debug */,
+				193B75D2286DF0750067AC37 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		19762309285B4BF5008705AE /* Build configuration list for PBXProject "DarkMode" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

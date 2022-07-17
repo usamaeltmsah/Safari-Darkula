@@ -17,14 +17,34 @@ class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHan
     
     
     var dark, gray, sepia: UIMenuElement!
-    var defaults: UserDefaults?
+    
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector:#selector(loadData), name: UIApplication.willEnterForegroundNotification, object: UIApplication.shared)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        defaults = UserDefaults.standard
+        loadData()
         
-        if let theme = defaults?.string(forKey: K.themeKey) {
+        
+        
+        self.webView.navigationDelegate = self
+        self.webView.scrollView.isScrollEnabled = false
+
+        self.webView.configuration.userContentController.add(self, name: "controller")
+
+        self.webView.loadFileURL(Bundle.main.url(forResource: "Main", withExtension: "html")!, allowingReadAccessTo: Bundle.main.resourceURL!)
+        segmentedControl.selectedSegmentTintColor = .lightGray
+        configureMenu()
+    }
+    
+    @objc private func loadData() {
+        if let theme = sharedUserDefaults?.string(forKey: K.themeKey) {
             switch theme {
             case K.Themes.grayTheme:
                 self.updateThemeData(theme: theme, color: .gray)
@@ -33,25 +53,90 @@ class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHan
             default:
                 self.updateThemeData(theme: theme, color: .black)
             }
+        } else {
+            saveThemeToDefaults(K.Themes.darkTheme)
         }
         
-        if let isOnIndex = defaults?.integer(forKey: K.isOnIndexKey) {
+        if let isOnIndex = sharedUserDefaults?.integer(forKey: K.isOnIndexKey) {
             segmentedControl.selectedSegmentIndex = isOnIndex
             changeDescText(with: isOnIndex)
+        } else {
+            sharedUserDefaults?.set(0, forKey: K.isOnIndexKey)
+        }
+    }
+
+    func configureMenu() {
+        dark = UIAction(title: K.Themes.darkTheme) { [weak self] _ in
+            self?.updateThemeData(theme: K.Themes.darkTheme, color: .black)
         }
         
-        self.webView.navigationDelegate = self
-        self.webView.scrollView.isScrollEnabled = false
-
-        self.webView.configuration.userContentController.add(self, name: "controller")
-
-        self.webView.loadFileURL(Bundle.main.url(forResource: "Main", withExtension: "html")!, allowingReadAccessTo: Bundle.main.resourceURL!)
+        gray = UIAction(title: K.Themes.grayTheme) { [weak self] _ in
+            self?.updateThemeData(theme: K.Themes.grayTheme, color: .gray)
+        }
+        
+        sepia = UIAction(title: K.Themes.sepiaTheme) { [weak self] _ in
+            self?.updateThemeData(theme: K.Themes.sepiaTheme, color: .brown)
+        }
+        
+        let themesMenu = UIMenu(title: "Select Mode", children: [dark, gray, sepia])
+        
+        changeThemeButton.menu = themesMenu
+        changeThemeButton.showsMenuAsPrimaryAction = true
     }
-
+    
+    func sendMessageToExtension() {
+        
+    }
+    
+    func  updateThemeData(theme: String, color: UIColor) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.saveThemeToDefaults(theme)
+        }
+        
+        self.colorLabel.text = theme
+        self.changeThemeButton.backgroundColor = color
+    }
+    
+    func saveThemeToDefaults(_ theme: String) {
+        sharedUserDefaults?.set(theme, forKey: K.themeKey)
+        sharedUserDefaults?.synchronize()
+    }
+    
+    @IBAction func sementedValueChange(_ sender: UISegmentedControl) {
+        DispatchQueue.main.async {
+            sharedUserDefaults?.set(sender.selectedSegmentIndex, forKey: K.isOnIndexKey)
+        }
+        changeDescText(with: sender.selectedSegmentIndex)
+    }
+    
+    func changeDescText(with index: Int) {
+        switch index {
+        case 0:
+            modeDescLabel.text = K.autoDescText
+        case 1:
+            modeDescLabel.text = K.onDescText
+        default:
+            modeDescLabel.text = K.offDescText
+        }
+    }
+    
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         // Override point for customization.
+        
+//        let theme = defaults?.string(forKey: K.themeKey)
+        self.webView.evaluateJavaScript("console.log('theme');")
+//        let jscode = """
+//        console.log("Error");
+//        })
+//        """
+//        self.webView.evaluateJavaScript(jscode) { _, _ in }
     }
-
+        
+    @IBAction func changeThemeBtnPressed(_ sender: Any) {
+        
+    }
+    
+    
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         print(message.name)
 //        if message.name == "test", let messageBody = message.body as? String {

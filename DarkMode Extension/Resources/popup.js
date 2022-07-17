@@ -16,6 +16,30 @@ const colors = [{
     bg_color: '#fdf1e6'
 }]
 
+browser.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+    if (themeData.isOnInd < 2) {
+        switch (message.themeData.theme) {
+            case "Dark":
+                changeMode(colors[0]);
+                break;
+            case "Gray":
+                changeMode(colors[1]);
+                break;
+            case "Sepia":
+                changeMode(colors[2]);
+                break;
+            default:
+                break;
+        }
+    }
+    sendResponse({
+        data: "I am fine, thank you. How is life in the background?"
+    });
+});
+
+browser.runtime.sendMessage("Poped!");
+//await browser.window.getAll()
+
 
 // Do action when navigate to new link
 // browser.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
@@ -59,31 +83,37 @@ const changeMode = async (color) => {
 
 
     // Remove all added (by the extension) css files then insert the new one
-    let removeAddedCSSFiles = new Promise(resolve => {
-        removeAllCSSFiles();
-    });
+//    let removeAddedCSSFiles = new Promise(resolve => {
+//        removeAllCSSFiles();
+//    });
 
-    removeAddedCSSFiles.then(insertCSS(color.file));
+    browser.runtime.sendNativeMessage("application.id", {message: {"theme": color.name }}, function(response) {
+        console.log("Received sendNativeMessage response (popup):");
+        console.log(response);
+        const themeData = response["themeData"]
+        if (themeData.isOnInd == 0 && isBetween8pmAnd7am()) {
+            insertCSS(colors[0].file);
+        } else if (themeData.isOnInd == 1) {
+            insertCSS(color.file);
+        }
+    });
+//    removeAddedCSSFiles.then(insertCSS(color.file));
+//    insertCSS(color.file);
     
    window.close()
 }
 
-// function toggle() {
-//     let q = document.querySelectorAll('#nightify')
-//     if (q.length) {
-//         q[0].parentNode.removeChild(q[0])
-//         return false
-//     }
-//     var h = document.getElementsByTagName('head')[0],
-//         s = document.createElement('style');
-//     s.setAttribute('type', 'text/css');
-//     s.setAttribute('id', 'nightify');
-//     s.appendChild(document.createTextNode('html{-webkit-filter:invert(100%) hue-rotate(180deg) contrast(70%) !important; background: #fff;} .line-content {background-color: #fefefe;}'));
-//     h.appendChild(s);
-//     return true
-// }
+// Receive message from content.js
+browser.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+    console.log("Received request (popup): ", message);
+    // changeMode(message.color);
+});
 
-// var result = toggle()
+// Recieve message from background.js
+browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    console.log("Received request (popup): ", request);
+});
+
 
 function getCurrentTapDomain(tab) {
     return new Promise((resolve, reject) => {
@@ -98,18 +128,18 @@ function getCurrentTapDomain(tab) {
 // }
 
 // Create function to save selectedFile to cache
-function saveFile(selectedFile) {
-    return new Promise((resolve, reject) => {
-        browser.storage.local.set({ selectedFile }).then(resolve, reject);
-    });
-}
+//function saveFile(selectedFile) {
+//    return new Promise((resolve, reject) => {
+//        browser.storage.local.set({ selectedFile }).then(resolve, reject);
+//    });
+//}
 
 // Create function to read selectedFile from cache
-function readFile() {
-    return new Promise((resolve, reject) => {
-        browser.storage.local.get("selectedFile").then(resolve, reject);
-    });
-}
+//function readFile() {
+//    return new Promise((resolve, reject) => {
+//        browser.storage.local.get("selectedFile").then(resolve, reject);
+//    });
+//}
 
 // function saveToCache(key, value) {
 //     return new Promise((resolve, reject) => {
@@ -135,23 +165,17 @@ function insertCSS(file) {
     });
 }
 
-function removeCSS(file) {
-    return new Promise((resolve, reject) => {
-        browser.tabs.removeCSS({ file }).then(resolve, reject);
-    });
-}
-
-function removeAllCSSFiles() {
-    colors.forEach(color => {
-        removeCSS(color.file);
-    });
-}
-
-function isCSSFileInserted(file) {
-    return new Promise((resolve, reject) => {
-        browser.tabs.getCSS({ file }).then(resolve, reject);
-    });
-}
+//function removeCSS(file) {
+//    return new Promise((resolve, reject) => {
+//        browser.tabs.removeCSS({ file }).then(resolve, reject);
+//    });
+//}
+//
+//function removeAllCSSFiles() {
+//    colors.forEach(color => {
+//        removeCSS(color.file);
+//    });
+//}
 
 colors.forEach(color => {
     const button = document.createElement('button')
@@ -163,33 +187,3 @@ colors.forEach(color => {
         changeMode(color)
     })
 })
-
-////var myParent = document.querySelector('#color-container');
-////var selectList = document.createElement("select");
-////selectList.id = "mySelect";
-////myParent.appendChild(selectList);
-
-//function swapStyleSheet(sheet) {
-//    document.getElementById('pagestyle').setAttribute('href', sheet);
-//}
-//
-//function toggleRef(ref) {
-//    // var blackCss = document.createElement('link');
-//    // blackCss.ref = "styles/dark.css";
-//    // blackCss.rel = "stylesheet";
-//    // document.head.appendChild(blackCss);
-//
-//    if ($('#pagestyle').length === 0) { // does not yet exist
-//
-//        $('<link />', {
-//            id: 'pagestyle',
-//            rel: 'stylesheet',
-//            href: ref
-//        }).appendTo('head');
-//
-//    } else { // exists, remove it
-//
-//        $('#pagestyle').remove();
-//
-//    }
-//}
