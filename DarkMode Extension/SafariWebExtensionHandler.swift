@@ -11,13 +11,9 @@ import os.log
 class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
 
     func beginRequest(with context: NSExtensionContext) {
-        // Receive a message from the JavaScript component of the Web Extension.
-        // Unpack the message, and then wrap in an object to send as the response.
         let item = context.inputItems[0] as! NSExtensionItem
         let message = item.userInfo?[SFExtensionMessageKey] as! [String:Any]
         let response = NSExtensionItem()
-//        response.userInfo = [ SFExtensionMessageKey: message ]
-//        context.completeRequest(returningItems: [response], completionHandler: nil)
         os_log(.default, "Received message from browser.runtime.sendNativeMessage: %@", message as CVarArg)
 
         let msgData = message["message"]
@@ -37,11 +33,6 @@ class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
                 context.completeRequest(returningItems: [response], completionHandler: nil)
             }
         }
-        
-//        context.completeRequest(returningItems: [response], completionHandler: nil)
-        
-//        let response = NSExtensionItem()
-//        response.userInfo = [ SFExtensionMessageKey: [ "Response to": message ] ]
     }
 
 }

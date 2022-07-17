@@ -41,3 +41,20 @@ img, video {
 /*video {*/
 /*    filter: sepia(1) hue-rotate(165deg) !important;*/
 /*}*/
+
+
+/*
+ Reset the css style
+ */
+html {
+    filter: unset !important;
+}
+
+img,
+video, .background-image {
+    filter: unset !important;
+}
+
+.line-content {
+    background-color: unset !important;
+}
