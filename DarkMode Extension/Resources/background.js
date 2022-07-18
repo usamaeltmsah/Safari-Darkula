@@ -14,8 +14,6 @@ var themes = {
 };
 
 function handleUpdated(tabId, changeInfo, tabInfo) {
-   let gettingAll = browser.permissions.getAll()
-    console.log(gettingAll);
     browser.runtime.sendNativeMessage("application.id", {message: "get_theme"}, function(response) {
         console.log("Received sendNativeMessage response (background):");
         const themeData = response["themeData"]
@@ -36,24 +34,19 @@ function handleUpdated(tabId, changeInfo, tabInfo) {
 
 function isBetween8pmAnd7am() {
     var startTime = '20:00:00';
-    var endTime = '11:00:00';
+    var endTime = '7:00:00';
 
     var currentDate = new Date();
-    console.log("Now: ", currentDate);
-
-    var startDate = new Date(currentDate.getTime());
     
+    var startDate = new Date(currentDate.getTime());
     startDate.setHours(startTime.split(":")[0]);
     startDate.setMinutes(startTime.split(":")[1]);
     startDate.setSeconds(startTime.split(":")[2]);
-    console.log("Start: ", startDate);
 
     var endDate = new Date(currentDate.getTime());
-    
     endDate.setHours(endTime.split(":")[0]);
     endDate.setMinutes(endTime.split(":")[1]);
     endDate.setSeconds(endTime.split(":")[2]);
-    console.log("End: ", endDate);
 
     valid = startDate <= currentDate || endDate >= currentDate;
     
@@ -68,7 +61,7 @@ function handleActivated(activeInfo) {
 }
 
 browser.tabs.onActivated.addListener(handleActivated);
-//browser.tabs.reload();
+
 browser.tabs.onUpdated.addListener(handleUpdated);
 
 

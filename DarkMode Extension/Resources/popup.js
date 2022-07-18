@@ -38,6 +38,29 @@ browser.runtime.onMessage.addListener(function (message, sender, sendResponse) {
 });
 
 browser.runtime.sendMessage("Poped!");
+
+// When popup, it means that the user allowed the extension to be work on this website.
+browser.permissions.getAll().then((result) => {
+    console.log("Allowed Websites: ", getDomainsFromUrls(result.origins));
+    
+    browser.runtime.sendNativeMessage("application.id", {message: {"allowed_websites": getDomainsFromUrls(result.origins)}}, function(response) {
+        console.log("Response!: ", response);
+    });
+});
+
+function getDomainsFromUrls(urls) {
+    var newArray = [];
+    urls.forEach(function (el) {
+        let s = el.replace(/^.{6}/g, '');
+        s = s.slice(0, -2) + '';
+        if (s == "") {
+            s = "Other websites";
+        }
+        newArray.push(s);
+    });
+    return newArray;
+}
+
 //await browser.window.getAll()
 
 
@@ -100,7 +123,7 @@ const changeMode = async (color) => {
 //    removeAddedCSSFiles.then(insertCSS(color.file));
 //    insertCSS(color.file);
     
-   window.close()
+//   window.close()
 }
 
 // Receive message from content.js

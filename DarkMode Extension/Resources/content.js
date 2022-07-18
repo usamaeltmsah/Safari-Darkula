@@ -24,10 +24,10 @@
 //});
 //browser.runtime.sendMessage("request from content.js");
 
-function sendMessage(e) {
-  const sending = browser.runtime.sendMessage({content: "get_theme"});
-}
-sendMessage;
+//function sendMessage(e) {
+//  const sending = browser.runtime.sendMessage({content: "get_theme"});
+//}
+//sendMessage;
 
 //window.addEventListener("click", sendMessage);
 

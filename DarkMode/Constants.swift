@@ -12,6 +12,7 @@ struct K {
         
     static let themeKey = "theme"
     static let isOnIndexKey = "isOnSegment"
+    static let websitesKey = "allowedWebsites"
     
     static let autoDescText = "Your website theme will change when mode is enabled"
     static let onDescText = "Your website theme will always be in that mode"

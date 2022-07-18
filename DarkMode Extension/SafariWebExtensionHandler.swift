@@ -31,6 +31,11 @@ class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
                 let isOnInd = sharedUserDefaults?.integer(forKey: K.isOnIndexKey)
                 response.userInfo = [ SFExtensionMessageKey: [ "themeData": ["theme": theme , "isOnInd": isOnInd ?? 0]] as! [String: Any] ]
                 context.completeRequest(returningItems: [response], completionHandler: nil)
+            } else if let urls = msg["allowed_websites"] as? [String] {
+                sharedUserDefaults?.set(urls, forKey: K.websitesKey)
+                
+                response.userInfo = [ SFExtensionMessageKey: ["themeData": ["Websites": urls]] as! [String: Any] ]
+                context.completeRequest(returningItems: [response], completionHandler: nil)
             }
         }
     }

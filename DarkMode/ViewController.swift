@@ -14,9 +14,11 @@ class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHan
     @IBOutlet var webView: WKWebView!
     @IBOutlet weak var modeDescLabel: UILabel!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var allowedWebsitesTV: UITableView!
     
     
     var dark, gray, sepia: UIMenuElement!
+    var websites = [String]()
     
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector:#selector(loadData), name: UIApplication.willEnterForegroundNotification, object: UIApplication.shared)
@@ -30,6 +32,9 @@ class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHan
         super.viewDidLoad()
 
         loadData()
+        
+        allowedWebsitesTV.delegate = self
+        allowedWebsitesTV.dataSource = self
         
         
         
@@ -62,6 +67,11 @@ class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHan
             changeDescText(with: isOnIndex)
         } else {
             sharedUserDefaults?.set(0, forKey: K.isOnIndexKey)
+        }
+        
+        if let urls = sharedUserDefaults?.stringArray(forKey: K.websitesKey) {
+            websites = urls
+            allowedWebsitesTV.reloadData()
         }
     }
 
@@ -123,8 +133,8 @@ class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHan
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         // Override point for customization.
         
-//        let theme = defaults?.string(forKey: K.themeKey)
-        self.webView.evaluateJavaScript("console.log('theme');")
+//        let theme = sharedUserDefaults?.string(forKey: K.themeKey)
+        self.webView.evaluateJavaScript("console.log(theme);")
 //        let jscode = """
 //        console.log("Error");
 //        })
@@ -173,5 +183,22 @@ class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHan
         print(jsonString!)
         return jsonString!
     }
+    
+}
+
+
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return websites.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+        
+        cell?.textLabel?.text = websites[indexPath.row]
+        
+        return cell!
+    }
+    
     
 }
