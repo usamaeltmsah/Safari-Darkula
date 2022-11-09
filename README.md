@@ -1,5 +1,5 @@
 # Safari-Darkula
-This is an iOS extension for Safari (iOS) which allow you change the theme of any website (Dark, Gray, and Sepia Modes)
+This is an iOS app which have an extension for Safari (iOS) to allow you change the theme of any website (Dark, Gray, and Sepia Modes)
 
 First app launch                                       | Changing the theme                                     | Use the extension!
 :-----------------------------------------------------:|:------------------------------------------------------:|:----------------------------------------------------------------:
