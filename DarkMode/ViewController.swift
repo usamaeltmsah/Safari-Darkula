@@ -30,13 +30,10 @@ class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHan
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        setupUI()
+        
         loadData()
-        
-        allowedWebsitesTV.delegate = self
-        allowedWebsitesTV.dataSource = self
-        
-        
         
         self.webView.navigationDelegate = self
         self.webView.scrollView.isScrollEnabled = false
@@ -44,6 +41,17 @@ class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHan
         self.webView.configuration.userContentController.add(self, name: "controller")
 
         self.webView.loadFileURL(Bundle.main.url(forResource: "Main", withExtension: "html")!, allowingReadAccessTo: Bundle.main.resourceURL!)
+    }
+    
+    private func setupTableView() {
+        allowedWebsitesTV.delegate = self
+        allowedWebsitesTV.dataSource = self
+    }
+    
+    private func setupUI() {
+        setupTableView()
+        changeThemeButton.layer.borderWidth = 2
+        changeThemeButton.layer.borderColor = UIColor.white.cgColor
         segmentedControl.selectedSegmentTintColor = .lightGray
         configureMenu()
     }
@@ -75,7 +83,7 @@ class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHan
         }
     }
 
-    func configureMenu() {
+    private func configureMenu() {
         dark = UIAction(title: K.Themes.darkTheme) { [weak self] _ in
             self?.updateThemeData(theme: K.Themes.darkTheme, color: .black)
         }
@@ -94,11 +102,7 @@ class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHan
         changeThemeButton.showsMenuAsPrimaryAction = true
     }
     
-    func sendMessageToExtension() {
-        
-    }
-    
-    func  updateThemeData(theme: String, color: UIColor) {
+    private func updateThemeData(theme: String, color: UIColor) {
         DispatchQueue.global(qos: .userInitiated).async {
             self.saveThemeToDefaults(theme)
         }
@@ -107,19 +111,12 @@ class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHan
         self.changeThemeButton.backgroundColor = color
     }
     
-    func saveThemeToDefaults(_ theme: String) {
+    private func saveThemeToDefaults(_ theme: String) {
         sharedUserDefaults?.set(theme, forKey: K.themeKey)
         sharedUserDefaults?.synchronize()
     }
     
-    @IBAction func sementedValueChange(_ sender: UISegmentedControl) {
-        DispatchQueue.main.async {
-            sharedUserDefaults?.set(sender.selectedSegmentIndex, forKey: K.isOnIndexKey)
-        }
-        changeDescText(with: sender.selectedSegmentIndex)
-    }
-    
-    func changeDescText(with index: Int) {
+    private func changeDescText(with index: Int) {
         switch index {
         case 0:
             modeDescLabel.text = K.autoDescText
@@ -146,6 +143,12 @@ class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHan
         
     }
     
+    @IBAction func sementedValueChange(_ sender: UISegmentedControl) {
+        DispatchQueue.main.async {
+            sharedUserDefaults?.set(sender.selectedSegmentIndex, forKey: K.isOnIndexKey)
+        }
+        changeDescText(with: sender.selectedSegmentIndex)
+    }
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         print(message.name)
